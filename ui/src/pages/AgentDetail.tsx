@@ -3,6 +3,7 @@ import { AiConnectionPoolRunDetails } from "@/components/ai-connections/AiConnec
 import { AgentConnectionInstructions } from "@/features/connections/ConnectionInstructions";
 import type { AgentInstructionCandidate, AgentInstructionsBundle } from "@paperclipai/shared";
 import { InstructionHistory } from "../components/InstructionHistory";
+import { AgentAvatarUpload } from "../components/AgentAvatarUpload";
 import { AgentCharacter } from "../components/AgentCharacter";
 import { characterStateForAgent } from "@paperclipai/shared";
 import { mergeRunLogChunks, readChunkSeq } from "../lib/run-log-chunks";
@@ -1266,6 +1267,7 @@ export function AgentDetail() {
             </div>
             <AgentLifecycleStatus agent={currentAgent} refreshError={lifecycle.isError} onRetry={() => agentAction.mutate("retryLifecycle")} retryPending={agentAction.isPending} />
             <SetPrimaryAgentButton agent={agent} />
+            <AgentAvatarUpload agent={currentAgent} />
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-2">
