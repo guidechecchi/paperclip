@@ -1,1 +1,18 @@
 patches/*.patch whitespace=-space-before-tab
+
+
+# Byte-verified contracts and generated artifacts. The paperclip-runner checks
+# hash these files with SHA-256 and byte-compare generated outputs, so they must
+# stay LF in every working tree. A Windows checkout with core.autocrlf=true
+# would otherwise convert them to CRLF and fail check:protocol-manifest,
+# check:protocol-types, check:acpx-profiles and check:capability-inventory, and
+# break the teams-catalog shipped-manifest hashes.
+packages/paperclip-runner/** text eol=lf
+packages/teams-catalog/** text eol=lf
+patches/acpx@0.13.1.patch text eol=lf
+
+# The cap-v1 ClipLab sync checks (part of check:token-gates) regenerate these
+# TypeScript modules from their sources and byte-compare the working tree, so
+# they must stay LF for the same reason as the contracts above.
+packages/shared/src/cliplab/character.ts text eol=lf
+packages/shared/src/cliplab/palette-tokens.ts text eol=lf
